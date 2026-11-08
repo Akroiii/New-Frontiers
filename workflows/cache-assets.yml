@@ -1,0 +1,25 @@
+name: Update Minecraft Assets Cache
+
+on:
+  schedule:
+    - cron: '34 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Create Minecraft Assets Cache
+        uses: neoforged/actions-modding/minecraft-assets-cache/create@v1
+        with:
+          minecraft-versions: |
+            1.21.1
