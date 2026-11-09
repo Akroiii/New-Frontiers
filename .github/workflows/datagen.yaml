@@ -21,10 +21,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run DataGen
-        run: ./gradlew runData --stacktrace 2>&1 | grep -A 20 -E "Caused by:|Exception|error:" || true
-
-      - name: Commit generated files
-        if: success()
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Generate data files"
+        run: ./gradlew runData --stacktrace 2>&1 | tee /tmp/gradle-log.txt
+      
+      - name: Show tasks and errors
+        if: always()
+        run: |
+          echo "=== ORDINE DEI TASK ==="
+          grep -E "^> Task :" /tmp/gradle-log.txt || echo "Nessun task trovato"
+          echo ""
+          echo "=== ERRORI ==="
+          grep -A 10 -E "Caused by:|Exception|FAILED" /tmp/gradle-log.txt | head -50 || echo "Nessun errore trovato"
