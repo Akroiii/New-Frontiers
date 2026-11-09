@@ -31,3 +31,8 @@ jobs:
           echo ""
           echo "=== ERRORI ==="
           grep -A 10 -E "Caused by:|Exception|FAILED" /tmp/gradle-log.txt | head -50 || echo "Nessun errore trovato"
+
+      - name: Commit generated files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Generate data files"
