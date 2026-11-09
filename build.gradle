@@ -96,8 +96,14 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
     into "build/generated/sources/modMetadata"
 }
 
-// --- CORREZIONE: forza l'esecuzione di generateModMetadata prima di createMinecraftArtifacts ---
+// --- CORREZIONI PER IL DATAGEN ---
+// 1. Forza createMinecraftArtifacts a dipendere da generateModMetadata
 createMinecraftArtifacts { dependsOn generateModMetadata }
+
+// 2. Forza runData a dipendere da generateModMetadata
+tasks.named('runData') {
+    dependsOn generateModMetadata
+}
 
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
