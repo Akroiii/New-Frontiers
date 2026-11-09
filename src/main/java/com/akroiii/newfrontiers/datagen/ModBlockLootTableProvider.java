@@ -17,6 +17,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.SALT_BLOCK.get());
+        
+        dropSelf(ModBlocks.CHALK.get());
+        dropSelf(ModBlocks.CHALK_STAIRS.get());
+        dropSelf(ModBlocks.CHALK_WALL.get());
+        // La lastra ha bisogno di una regola speciale per il doppio blocco
+        add(ModBlocks.CHALK_SLAB.get(), createSlabItemTable(ModBlocks.CHALK_SLAB.get()));
     }
 
     @Override
