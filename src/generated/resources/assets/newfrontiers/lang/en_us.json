@@ -1,4 +1,8 @@
 {
+  "block.newfrontiers.chalk": "Chalk",
+  "block.newfrontiers.chalk_slab": "Chalk Slab",
+  "block.newfrontiers.chalk_stairs": "Chalk Stairs",
+  "block.newfrontiers.chalk_wall": "Chalk Wall",
   "block.newfrontiers.salt": "Salt",
   "itemGroup.newfrontiers": "New Frontiers"
 }

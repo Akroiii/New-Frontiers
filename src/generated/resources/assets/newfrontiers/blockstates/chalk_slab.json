@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "newfrontiers:block/chalk_slab"
+    },
+    "type=double": {
+      "model": "newfrontiers:block/chalk"
+    },
+    "type=top": {
+      "model": "newfrontiers:block/chalk_slab_top"
+    }
+  }
+}
