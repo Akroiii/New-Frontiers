@@ -10,27 +10,27 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.List;
 import java.util.Set;
 
-@EventBusSubscriber(modid = NewFrontiersMod.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = NewFrontiersMod.MODID)
 public class ModDataGenerators {
 
     @SubscribeEvent
-        public static void gatherData(GatherDataEvent event) {
-                var generator = event.getGenerator();
-                        var output = generator.getPackOutput();
-                                var existingFileHelper = event.getExistingFileHelper();
-                                        var lookupProvider = event.getLookupProvider();
+    public static void gatherData(GatherDataEvent event) {
+        var generator = event.getGenerator();
+        var output = generator.getPackOutput();
+        var existingFileHelper = event.getExistingFileHelper();
+        var lookupProvider = event.getLookupProvider();
 
-                                                generator.addProvider(event.includeClient(),
-                                                                new ModBlockStateProvider(output, existingFileHelper));
-                                                                        generator.addProvider(event.includeClient(),
-                                                                                        new ModLanguageProvider(output));
+        generator.addProvider(event.includeClient(),
+                new ModBlockStateProvider(output, existingFileHelper));
+        generator.addProvider(event.includeClient(),
+                new ModLanguageProvider(output));
 
-                                                                                                generator.addProvider(event.includeServer(),
-                                                                                                                new LootTableProvider(output, Set.of(), List.of(
-                                                                                                                                        new LootTableProvider.SubProviderEntry(
-                                                                                                                                                                        ModBlockLootTableProvider::new,
-                                                                                                                                                                                                        LootContextParamSets.BLOCK
-                                                                                                                                                                                                                                )
-                                                                                                                                                                                                                                                ), lookupProvider));
-                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                    }
+        generator.addProvider(event.includeServer(),
+                new LootTableProvider(output, Set.of(), List.of(
+                        new LootTableProvider.SubProviderEntry(
+                                ModBlockLootTableProvider::new,
+                                LootContextParamSets.BLOCK
+                        )
+                ), lookupProvider));
+    }
+}
