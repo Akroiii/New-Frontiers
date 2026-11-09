@@ -7,6 +7,9 @@ jobs:
   datagen:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: write   # <-- QUESTA È LA RIGA CHE MANCAVA
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
