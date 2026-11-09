@@ -14,14 +14,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        // Sale (mettiamo la texture della sabbia per non farlo crashare)
+        // Sale
         ResourceLocation sandTexture = ResourceLocation.withDefaultNamespace("block/sand");
         simpleBlockWithItem(ModBlocks.SALT_BLOCK.get(), models().cubeAll("salt", sandTexture));
 
-        // Chalk e varianti (usano la texture "chalk" che creeremo)
+        // Chalk (Blocco base)
         simpleBlockWithItem(ModBlocks.CHALK.get(), models().cubeAll("chalk", modLoc("block/chalk")));
+
+        // Chalk Stairs
         stairsBlock(ModBlocks.CHALK_STAIRS.get(), modLoc("block/chalk"));
+        itemModels().withExistingParent("chalk_stairs", modLoc("block/chalk_stairs"));
+
+        // Chalk Slab
         slabBlock(ModBlocks.CHALK_SLAB.get(), modLoc("block/chalk"), modLoc("block/chalk"));
+        itemModels().withExistingParent("chalk_slab", modLoc("block/chalk_slab"));
+
+        // Chalk Wall
         wallBlock(ModBlocks.CHALK_WALL.get(), modLoc("block/chalk"));
+        itemModels().withExistingParent("chalk_wall", modLoc("block/chalk_wall"));
     }
 }
