@@ -29,9 +29,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock(ModBlocks.CHALK_SLAB.get(), modLoc("block/chalk"), modLoc("block/chalk"));
         itemModels().withExistingParent("chalk_slab", modLoc("block/chalk_slab"));
 
-        // Chalk Wall
+        // Chalk Wall - Usa wallInventory per il modello dell'item
         wallBlock(ModBlocks.CHALK_WALL.get(), modLoc("block/chalk"));
-        // QUI LA CORREZIONE: aggiunto "_inventory" alla fine
-        itemModels().withExistingParent("chalk_wall", modLoc("block/chalk_wall_inventory"));
+        itemModels().wallInventory("chalk_wall", modLoc("block/chalk"));
     }
 }
