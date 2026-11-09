@@ -21,9 +21,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Run DataGen
-        run: ./gradlew runData
+        run: ./gradlew runData --stacktrace
 
       - name: Commit generated files
+        if: success()
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Generate data files"
