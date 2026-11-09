@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="newfrontiers"
+version="1.0.0"
+displayName="New Frontiers"
+authors="Akroi_ (Akroiii)"
+description='''Ehila signore, questa mod appartiene al big bro Ako e non sa cosa mettere in questa descrizione, dunque ti offre una ciambella e stfu. 10/10'''
+
+[[dependencies.newfrontiers]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.265,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.newfrontiers]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
