@@ -77,37 +77,6 @@ configurations {
 dependencies {
 }
 
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            neo_version            : neo_version,
-            loader_version_range   : loader_version_range,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description,
-    ]
-    inputs.properties replaceProperties
-    expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
-}
-
-// --- CORREZIONI PER IL DATAGEN ---
-// 1. Forza createMinecraftArtifacts a dipendere da generateModMetadata
-createMinecraftArtifacts { dependsOn generateModMetadata }
-
-// 2. Forza runData a dipendere da generateModMetadata
-tasks.named('runData') {
-    dependsOn generateModMetadata
-}
-
-sourceSets.main.resources.srcDir generateModMetadata
-neoForge.ideSyncTask generateModMetadata
-
 publishing {
     publications {
         register('mavenJava', MavenPublication) {
